@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "Alışverişi Tamamla";
+}
+
+<h1>CompleteShop</h1>
+<div class="Ks_sptDiv">
+    <table border="0" width="100%" id="table1">
+        <form method="POST" name="HizliKayitFormu" id="HizliKayitFormu" action=""></form>
+        <input type="hidden" name="Sayfa" value="SiparisTamamla">
+        <tbody>
+            <tr>
+                <td width="500" class="KsBasliklar">Adınız Soyadınız</td>
+                <td class="KsAltCizgi">
+                    <input type="text" class="radius textform tool" title="Adınızı Soyadınızı yazınız" name="AdSoyad" size="20">*
+                </td>
+            </tr>
+            <tr>
+                <td class="KsBasliklar">E-Posta Adresiniz</td>
+                <td class="KsAltCizgi"><input type="text" class="radius textform tool" title="E-posta adresini yazınız" name="Email" size="20">*</td>
+            </tr>
+
+            <tr>
+                <td class="KsBasliklar">Teslimat Adresiniz</td>
+                <td class="KsAltCizgi"><textarea rows="4" name="Adres" class="radius textform" cols="50"></textarea> *</td>
+            </tr>
+            <tr>
+                <td class="KsBasliklar">Teslimat Şehir</td>
+                <td class="KsAltCizgi"><select size="1" name="il" onchange="IlceSecim();" id="selectSehir" style="width:200px;" class="radius textform "><option selected="" value="">Şehir Seçiniz</option><option value="ANKARA">ANKARA</option><option value="İSTANBUL">İSTANBUL</option><option value="İZMİR">İZMİR</option><option value="ADANA">ADANA</option><option value="ADIYAMAN">ADIYAMAN</option><option value="AFYONKARAHİSAR">AFYONKARAHİSAR</option><option value="AĞRI">AĞRI</option><option value="AMASYA">AMASYA</option><option value="ANTALYA">ANTALYA</option><option value="ARTVİN">ARTVİN</option><option value="AYDIN">AYDIN</option><option value="BALIKESİR">BALIKESİR</option><option value="BİLECİK">BİLECİK</option><option value="BİNGÖL">BİNGÖL</option><option value="BİTLİS">BİTLİS</option><option value="BOLU">BOLU</option><option value="BURDUR">BURDUR</option><option value="BURSA">BURSA</option><option value="ÇANAKKALE">ÇANAKKALE</option><option value="ÇANKIRI">ÇANKIRI</option><option value="ÇORUM">ÇORUM</option><option value="DENİZLİ">DENİZLİ</option><option value="DİYARBAKIR">DİYARBAKIR</option><option value="EDİRNE">EDİRNE</option><option value="ELAZIĞ">ELAZIĞ</option><option value="ERZİNCAN">ERZİNCAN</option><option value="ERZURUM">ERZURUM</option><option value="ESKİŞEHİR">ESKİŞEHİR</option><option value="GAZİANTEP">GAZİANTEP</option><option value="GİRESUN">GİRESUN</option><option value="GÜMÜŞHANE">GÜMÜŞHANE</option><option value="HAKKARİ">HAKKARİ</option><option value="HATAY">HATAY</option><option value="ISPARTA">ISPARTA</option><option value="MERSİN">MERSİN</option><option value="KARS">KARS</option><option value="KASTAMONU">KASTAMONU</option><option value="KAYSERİ">KAYSERİ</option><option value="KIRKLARELİ">KIRKLARELİ</option><option value="KIRŞEHİR">KIRŞEHİR</option><option value="KOCAELİ">KOCAELİ</option><option value="KONYA">KONYA</option><option value="KÜTAHYA">KÜTAHYA</option><option value="MALATYA">MALATYA</option><option value="MANİSA">MANİSA</option><option value="KAHRAMANMARAŞ">KAHRAMANMARAŞ</option><option value="MARDİN">MARDİN</option><option value="MUĞLA">MUĞLA</option><option value="MUŞ">MUŞ</option><option value="NEVŞEHİR">NEVŞEHİR</option><option value="NİĞDE">NİĞDE</option><option value="ORDU">ORDU</option><option value="RİZE">RİZE</option><option value="SAKARYA">SAKARYA</option><option value="SAMSUN">SAMSUN</option><option value="SİİRT">SİİRT</option><option value="SİNOP">SİNOP</option><option value="SİVAS">SİVAS</option><option value="TEKİRDAĞ">TEKİRDAĞ</option><option value="TOKAT">TOKAT</option><option value="TRABZON">TRABZON</option><option value="TUNCELİ">TUNCELİ</option><option value="ŞANLIURFA">ŞANLIURFA</option><option value="UŞAK">UŞAK</option><option value="VAN">VAN</option><option value="YOZGAT">YOZGAT</option><option value="ZONGULDAK">ZONGULDAK</option><option value="AKSARAY">AKSARAY</option><option value="BAYBURT">BAYBURT</option><option value="KARAMAN">KARAMAN</option><option value="KIRIKKALE">KIRIKKALE</option><option value="BATMAN">BATMAN</option><option value="ŞIRNAK">ŞIRNAK</option><option value="BARTIN">BARTIN</option><option value="ARDAHAN">ARDAHAN</option><option value="IĞDIR">IĞDIR</option><option value="YALOVA">YALOVA</option><option value="KARABÜK">KARABÜK</option><option value="KİLİS">KİLİS</option><option value="OSMANİYE">OSMANİYE</option><option value="DÜZCE">DÜZCE</option></select></td>
+            </tr>
+            <tr>
+                <td class="KsBasliklar">İlçe<input class="radius textform " type="hidden" name="ilce" id="selectIlce" size="20"></td>
+                <td class="KsAltCizgi" id="ilceListeDiv"><select name="ilceSecimi" id="ilceSecimi" style="width:200px;" class="radius textform "><option value="">İlçe Seçiniz</option></select> *</td>
+            </tr>
+            <tr>
+                <td class="KsBasliklar">Telefon</td>
+                <td class="KsAltCizgi"><input type="text" class="radius textform tool" placeholder="(0312) 555-55-55" title="Sabit Telefon Numaranızı Yazınız" id="input_Telefon" name="Telefon" size="20"></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="KsBasliklar">Cep Telefonu</td>
+                <td class="KsAltCizgi"><input type="text" class="radius textform tool" placeholder="(0532) 555-55-55" title="Cep Telefonu Numaranızı Yazınız" id="input_CepTel" name="CepTel" size="20"> *</td>
+            </tr>
+            <tr>
+                <td class="KsBasliklar">Güvenlik kodu</td>
+                <td class="KsAltCizgi"><img src="https://www.kitapsec.com/guvenlik_kodu.jpg"></td>
+            </tr>
+            <tr>
+                <td class="KsBasliklar">Güvenlik kodunu yazın</td>
+                <td class="KsAltCizgi"><input class="radius textform " type="text" name="Gkodu" size="10"> *</td>
+            </tr>
+
+            <tr>
+                <td class="KsBasliklar"></td>
+                <td class="KsAltCizgi"><input type="checkbox" name="Sozlesme" class="radius textform " id="Sozlesme" value="1"><a href="javascript:void(0);" onclick="PopPencere('https://www.kitapsec.com/Store.php?Git=Uyelik&amp;Sayfa=Sozlesme',600,400);">Üyelik Sözleşmesi</a></td>
+            </tr>
+            <tr>
+                <td class="KsBasliklar">&nbsp;</td>
+                <td class="KsAltCizgi">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td><a href="javascript:void(0);" onclick="Ajax('HizliKayitFormu','https://www.kitapsec.com/HizliSiparis.php?Git=SiparisTamamla','returnKayit','loadKayit')" class="btnHemenAl">Devam Et</a></td>
+                                <td><div id="returnKayit"></div><div id="loadKayit"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+

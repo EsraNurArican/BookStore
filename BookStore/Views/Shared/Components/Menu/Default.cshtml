@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Category>
+<div class="list-group">
+
+    <a asp-action="Index" asp-controller="Home" class="list-group-item list-group-item-action">
+        ANASAYFA
+       
+    </a>
+    
+
+    @foreach (var category in Model)
+    {
+        <a asp-action="Index" asp-controller="Home" asp-route-catid="@category.Id" class="list-group-item list-group-item-action">@category.Name</a>
+    }
+
+</div>
+
+<div class="list-group">
+    <!--Eger giris yapan kisi admin ya da editorse menünün altına ürün işlemleri ve kategori işlemleri eklensin-->
+    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor")))
+    {
+        <a asp-action="Index" asp-controller="Books" class="list-group-item list-group-item-action">Kitap İşlemleri</a>
+        <a asp-action="Index" asp-controller="Categories" class="list-group-item list-group-item-action">Kategori İşlemleri</a>
+        <a asp-action="Index" asp-controller="Publishers" class="list-group-item list-group-item-action">Yayınevi İşlemleri</a>
+        <a asp-action="Index" asp-controller="Writers" class="list-group-item list-group-item-action">Yazar İşlemleri</a>
+    }
+</div>
+

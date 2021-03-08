@@ -1,0 +1,21 @@
+﻿@model Book
+@{ 
+    <!--burada tanımladığımız değişkeni aşagıda kullanacagız-->
+    var reguest = ViewContext.HttpContext.Request;
+    string returnUrlValue = reguest.QueryString.HasValue ?
+        $"{ reguest.Path}{reguest.QueryString}" : reguest.Path.Value;
+
+}
+<div class="card">
+    <img src="@Model.ImageUrl" class="card-img-top" >
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <p class="card-text">@Model.Price yerine @(Model.Price*(decimal)(1-Model.Discount))</p>
+        <form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.Id" method="Post">
+            <input type="hidden" name="returnUrl" value="@returnUrlValue" />  <!--ekranda gözükmesi anlamsız,sunucu icin anlamlı bu yüzden hidden-->
+            <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+        </form>
+       
+    </div>
+</div>

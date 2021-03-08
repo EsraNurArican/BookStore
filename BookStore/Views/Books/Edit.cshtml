@@ -1,0 +1,121 @@
+﻿@model BookStore.Models.Book
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Düzenle</h1>
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WriterId" class="control-label"></label>
+                <select asp-for="WriterId" class="form-control" asp-items="@ViewBag.ItemsWriter"></select>
+                <span asp-validation-for="WriterId" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control" />
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublisherId" class="control-label"></label>
+                <select asp-for="PublisherId" class="form-control" asp-items="@ViewBag.Publisher"></select>
+                <span asp-validation-for="PublisherId" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Page" class="control-label"></label>
+                <input asp-for="Page" class="form-control" />
+                <span asp-validation-for="Page" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Items"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye Geri Dön</a>
+</div>
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#buttonEdit').on('click', function () {
+                var sendingData = {
+                    Id: $('#Id').val(),
+                    Name: $('#Name').val(),
+                    Description: $('#Description').val(),
+                    WriterId:$('#WriterId').val(),
+                    Rating: $('#Rating').val(),
+                    Price: $('#Price').val(),
+                    Discount: $('#Discount').val(),
+                    ImageUrl: $('#ImageUrl').val(),
+                    PublisherId: $('#PublisherId').val(),
+                    Page:$('#Page').val(),
+                    CategoryId: $('#CategoryId').val(),
+                }
+                console.log(sendingData);
+                $.ajax({
+                    url: '/Books/Edit',
+                    type: 'POST',
+                    data: sendingData,
+                    success: function (data) {
+                        console.log('BAŞARILI')
+                        alertify.alert(data, function () {
+                            location = '/Books/Index';
+                        });
+                    },
+                    error: function (err) {
+                        console.log(err.statusText);
+                    }
+                })
+            });
+        })
+    </script>
+}

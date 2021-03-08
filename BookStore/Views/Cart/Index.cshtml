@@ -1,0 +1,46 @@
+﻿@model Cart
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!--Bu sayfada sepetimizi göstermek istiyoruz-->
+<h1>Sepetiniz</h1>
+<img src="~/sepeticon.png" style="width:50px;height:50px" />
+
+
+<table class="table table-striped table-hover">
+    <thead>
+    <th> Ürün Adı </th>
+    <th> Ürünün Fiyatı</th>
+    <th> Adet</th>
+    <th> Ara Toplam</th>
+    <th></th>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>@item.Book.Name</td>
+                <td>@(item.Book.Price * (decimal)(1-item.Book.Discount))</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Book.Price * (decimal)(1-item.Book.Discount)* item.Quantity)</td>
+                <td>
+                    <button class="btn btn-danger" asp-action="">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <!--Tablonun en altında toplam ürün fiyatını verelim-->
+        <tr>
+            <td colspan="3">Toplam Fiyat</td> <!--Burada colspan ile yukarda kullanılan 5 columndan 3ünü birlestirerek yazmasını sağladık-->
+            <td>@Model.GetTotalValue() TL</td>
+            <td></td>
+        </tr>
+    </tfoot>
+
+</table>
+<a class="btn btn-lg btn-success" href="@ViewBag.ReturnUrl">Alışverişe Devam Et</a> <!--kullanıcının kaldığı yere geri dönmesi için-->
+<a class="btn btn-lg btn-danger" asp-controller="Cart" asp-action="CompleteShop">Siparişi Tamamla</a>
+

@@ -1,0 +1,40 @@
+﻿
+@model IEnumerable<Book>
+    <!--Foreach ile dönülebilecek product nesnesini tanımladık-->
+@{
+    ViewData["Title"] = "Home Page";
+    var count = 0;
+}
+
+
+<!--Bı row her 4 col'da bir kapansın ve yeni bir row açılsın istiyoruz-->
+<div class="row">
+   
+
+    @foreach (var book in Model)
+    {
+        @if (count != 0 && count % 4 == 0)
+        {
+            <!--Her 4 col'dan sonra yeni row aç, div aç kapa yapıyoruz-->
+        @:</div>
+        @:<div class="row">
+        }
+        <div class="col-3">
+            <partial name="_BookCard" model="@book" />
+        </div>
+        count++;
+
+    }
+</div>
+
+<ul class="pagination">
+
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <li class="page-item">
+            <a class="page-link" asp-action="Index" asp-controller="Home" asp-route-page="@i" asp-route-catid="@ViewBag.CatId">@i </a>
+        </li>
+
+    }
+
+</ul>
